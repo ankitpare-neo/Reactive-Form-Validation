@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import {FormGroup, FormBuilder, FormControl, Validators} from '@angular/forms'
 import {CustomValidator} from './CustomValidator'
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-root',
@@ -29,6 +30,20 @@ export class AppComponent {
        }) 
 
      
+       const foo = new Observable(subscriber => {
+        console.log('Hello');
+        subscriber.next(42);     
+        subscriber.next(43);
+        subscriber.complete()
+        subscriber.next(44);
+      });
+      
+      foo.subscribe(x => {
+        console.log(x);
+      });
+      foo.subscribe(y => { 
+        console.log(y);
+      });
 
   }
   get f() { 

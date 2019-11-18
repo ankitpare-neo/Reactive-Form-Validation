@@ -1,8 +1,9 @@
-<!-- main app container -->
+ main app container
 <div class="card m-3">
     <h5 class="card-header">Angular 8 Reactive Form Validation</h5>
     <div class="card-body">
         <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+                {{!!submitted}} {{!!f.title.errors}}
             <div class="form-row">
                 <div class="form-group col">
                     <label>Title</label>
@@ -14,6 +15,7 @@
                         <option value="Ms">Ms</option>
                     </select>
                     <div *ngIf="submitted && f.title.errors" class="invalid-feedback">
+                       
                         <div *ngIf="f.title.errors.required">Title is required</div>
                     </div>
                 </div>
@@ -62,9 +64,13 @@
                         <div *ngIf="f.confirmPassword.errors.required">Confirm Password is required</div>
                         
                     </div>
-                    <span *ngIf="f.errors?.notSame">Passwords must match</span>
+                    <div *ngIf="submitted && registerForm.errors" class="invalid-feedback">
+                            <div *ngIf="registerForm.errors?.notSame">Passwords must match</div>
+                            
+                        </div>
+                     <span *ngIf="submitted && registerForm.errors?.notSame">Passwords must match</span> 
                 </div>
-                
+                 
             </div>
             <div class="form-group form-check">
                 <input type="checkbox" formControlName="acceptTerms" id="acceptTerms" class="form-check-input" [ngClass]="{ 'is-invalid': submitted && f.acceptTerms.errors }" />
@@ -78,4 +84,7 @@
             
         </form>
     </div>
-</div>
+</div> 
+
+  
+<router-outlet></router-outlet>
