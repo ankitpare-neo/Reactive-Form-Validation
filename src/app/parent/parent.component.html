@@ -1,0 +1,4 @@
+<!-- <app-child ></app-child> -->
+
+<app-child [dataFromParent] = "parentToChild" (childToParent) = "getData($event)"></app-child>
+{{childToParent}}
