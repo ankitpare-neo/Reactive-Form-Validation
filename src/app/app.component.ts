@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import {FormGroup, FormBuilder, FormControl, Validators} from '@angular/forms'
 import {CustomValidator} from './CustomValidator'
 import { Observable } from 'rxjs';
+import { UserServiceService } from './user-service.service';
 
 @Component({
   selector: 'app-root',
@@ -12,7 +13,7 @@ export class AppComponent {
   title = 'react-form';
   registerForm: FormGroup;
     submitted = false;
-  constructor(private formBuilder : FormBuilder){  }
+  constructor(private formBuilder : FormBuilder, private ser : UserServiceService){  }
 
   ngOnInit() {
    
@@ -44,6 +45,14 @@ export class AppComponent {
       foo.subscribe(y => { 
         console.log(y);
       });
+
+
+
+     this.ser.userDetails.subscribe(d=>{
+       this.submitted  = d
+     })
+
+
 
   }
   get f() { 
