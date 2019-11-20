@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import {FormGroup, FormBuilder, FormControl, Validators} from '@angular/forms'
+import {FormGroup, FormBuilder, FormControl, Validators, FormArray, FormArrayName} from '@angular/forms'
 import {CustomValidator} from './CustomValidator'
 import { Observable } from 'rxjs';
 import { UserServiceService } from './user-service.service';
@@ -24,7 +24,8 @@ export class AppComponent {
             email: ['', [Validators.required, Validators.email]],
             password: ['', [Validators.required, Validators.minLength(6), CustomValidator.Number(/^[0-9]+$/)]],
             confirmPassword: ['', Validators.required],
-            acceptTerms: [false, Validators.requiredTrue]
+            acceptTerms: [false, Validators.requiredTrue],
+            hobbies: new FormArray([])
        },
        {
          validators: CustomValidator.PasswordMatch
@@ -78,6 +79,11 @@ export class AppComponent {
 onReset() {
     this.submitted = false;
     this.registerForm.reset();
+}
+
+onAddHobby(){
+  const control = new FormControl(null, Validators.required);
+   (<FormArray>this.registerForm.get('hobbies')).push(control)
 }
 
 }

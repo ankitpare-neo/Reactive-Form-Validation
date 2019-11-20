@@ -1,4 +1,4 @@
- <!-- main app container
+  main app container
 <div class="card m-3">
     <h5 class="card-header">Angular 8 Reactive Form Validation</h5>
     <div class="card-body">
@@ -72,6 +72,37 @@
                 </div>
                  
             </div>
+
+            <!-- Below code is for the Adding Dynamic Array using Form Array -->
+
+            <div class="form-group" formArrayName="hobbies">
+                <label>Hobbies</label>
+                <button (click)="onAddHobby()">Add Hobbies</button>
+
+                <div class="form-group" *ngFor = "let hobby of registerForm.get('hobbies').controls; let i of index">
+                <input type="text"  class = "form-control" [formControlName] = "i"/>
+            </div>
+            </div>
+               
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
             <div class="form-group form-check">
                 <input type="checkbox" formControlName="acceptTerms" id="acceptTerms" class="form-check-input" [ngClass]="{ 'is-invalid': submitted && f.acceptTerms.errors }" />
                 <label for="acceptTerms" class="form-check-label">Accept Terms & Conditions</label>
@@ -84,10 +115,12 @@
             
         </form>
     </div>
-</div>  -->
+</div>  
 <hr>
 <p  *ngIf="submitted">Activated</p>
 
 <hr>
 <app-parent></app-parent>
 <router-outlet></router-outlet>
+
+<hr>

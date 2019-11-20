@@ -7,17 +7,19 @@ import { Component, OnInit, Input } from '@angular/core';
 })
 export class ParentComponent implements OnInit {
 
-    constructor() { }
-    parentToChild =  "Welcome to the Parent data in child"
-    // childToParent = ''
-    childToParent : string
-    
+  constructor() { }
+  parentToChild = "Welcome to the Parent data in child"
+  // childToParent = ''
+  childToParent: string
+
   ngOnInit() {
   }
- 
-  getData(msg){
+
+  getData(msg) {
     console.log(msg)
     this.childToParent = msg
   }
+  
+   
 
 }
